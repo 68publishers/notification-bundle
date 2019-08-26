@@ -1,15 +1,17 @@
-<script n:nonce type="text/javascript">
-	{foreach $notifications as $notification}
-        {var type = $notification->getType()}
+{snippet messages}
+	<script n:nonce type="text/javascript">
+		{foreach $notifications as $notification}
+			{var type = $notification->getType()}
 
-        {if $type === $class::TYPE_ERROR || $type === 'danger'}
-            toastr.error({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
-        {elseif $type === $class::TYPE_SUCCESS}
-            toastr.success({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
-        {elseif $type === $class::TYPE_INFO}
-            toastr.info({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
-        {elseif $type === $class::TYPE_WARNING}
-            toastr.warning({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
-        {/if}
-	{/foreach}
-</script>
+			{if $type === $class::TYPE_ERROR || $type === 'danger'}
+				toastr.error({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
+			{elseif $type === $class::TYPE_SUCCESS}
+				toastr.success({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
+			{elseif $type === $class::TYPE_INFO}
+				toastr.info({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
+			{elseif $type === $class::TYPE_WARNING}
+				toastr.warning({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
+			{/if}
+		{/foreach}
+	</script>
+{/snippet}
