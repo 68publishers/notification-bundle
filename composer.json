@@ -1,0 +1,35 @@
+{
+	"name": "68publishers/notification-bundle",
+	"description": "Nette extension for user's notifications, flash messages also with Toastr (JS library) support.",
+	"keywords": ["68publishers", "notification", "notification-bundle", "nette"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Tomáš Glawaty",
+			"email": "tomasglawaty@icloud.com"
+		}
+	],
+	"require": {
+		"php": "~7.1",
+		"nette/di": "~2.4",
+		"nette/utils": "~2.4",
+		"nette/application": "~2.4",
+		"nette/http": "~2.4",
+		"nette/caching": "~2.4",
+		"nette/security": "~2.4",
+		"68publishers/smart-nette-component": "^0.1"
+	},
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^2.0",
+		"nette/tester": "^1.7",
+		"kdyby/translation": "^2.6"
+	},
+	"autoload": {
+		"classmap": ["src/"],
+		"files": []
+	},
+	"autoload-dev": {
+		"classmap": ["tests/"],
+		"files": []
+	}
+}

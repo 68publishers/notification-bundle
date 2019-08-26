@@ -1,0 +1,10 @@
+<div n:snippet="messages">
+    {foreach $notifications as $notification}
+        <div class="alert alert-{$notification->getType() == 'error' ? 'danger' : $notification->getType()}">
+            <strong n:if="$notification->getTitle()">{$flash->renderTitle($translator)|noescape}</strong> {$notification->renderMessage($translator)|noescape}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {/foreach}
+</div>
