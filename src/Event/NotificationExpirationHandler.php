@@ -20,9 +20,6 @@ final class NotificationExpirationHandler
 	/** @var bool  */
 	private $alreadyCalled = FALSE;
 
-	/** @var \Nette\Application\IResponse|NULL */
-	private $response;
-
 	/**
 	 * @param \SixtyEightPublishers\NotificationBundle\Storage\StorageProvider $provider
 	 * @param \Nette\Security\User                                             $user
@@ -40,40 +37,55 @@ final class NotificationExpirationHandler
 	 * @param \Nette\Application\IResponse   $response
 	 *
 	 * @return void
+	 * @throws \Exception
 	 */
 	public function onResponse(Nette\Application\Application $application, Nette\Application\IResponse $response): void
 	{
-		$this->response = $response;
+		if (TRUE === $this->alreadyCalled || $response instanceof Nette\Application\Responses\ForwardResponse || $response instanceof Nette\Application\Responses\RedirectResponse) {
+			return;
+		}
+
+		foreach ($this->provider->getAll($this->user->loggedIn ? (string) $this->user->getId() : NULL) as $storage) {
+			foreach ($storage->all() as $notification) {
+				$this->processNotification($notification, $storage);
+			}
+			$storage->onApplicationShutdown();
+		}
+
+		$this->alreadyCalled = TRUE;
 	}
 
 	/**
 	 * @internal
 	 *
-	 * @param \Nette\Application\Application $application
-	 * @param \Throwable|NULL                $e
-	 *
-	 * @throws \SixtyEightPublishers\NotificationBundle\Exception\MissingNotificationException
+	 * @return void
 	 */
-	public function onShutdown(Nette\Application\Application $application, ?\Throwable $e = NULL): void
+	public function onShutdown(): void
 	{
-		$isRedirect = $this->response instanceof Nette\Application\Responses\ForwardResponse
-			|| $this->response instanceof Nette\Application\Responses\RedirectResponse;
+		foreach ($this->provider->getAll($this->user->loggedIn ? (string) $this->user->getId() : NULL) as $storage) {
+			$storage->onApplicationShutdown();
+		}
+	}
 
-		if (NULL === $e && FALSE === $this->alreadyCalled) {
-			foreach ($this->provider->getAll($this->user->loggedIn ? (string) $this->user->getId() : NULL) as $storage) {
-				foreach ($storage->all() as $notification) {
-					if (FALSE === $isRedirect && $notification->getNumberOfRemainingHiddenRequests() > 0) {
-						$notification->hide($notification->getNumberOfRemainingHiddenRequests() - 1);
-					}
+	/**
+	 * @param \SixtyEightPublishers\NotificationBundle\Notification\Notification $notification
+	 * @param \SixtyEightPublishers\NotificationBundle\Storage\IStorage          $storage
+	 *
+	 * @return void
+	 * @throws \Exception
+	 */
+	private function processNotification(SixtyEightPublishers\NotificationBundle\Notification\Notification $notification, SixtyEightPublishers\NotificationBundle\Storage\IStorage $storage): void
+	{
+		if ($notification->getNumberOfRemainingHiddenRequests() > 0) {
+			$notification->hide($notification->getNumberOfRemainingHiddenRequests() - 1);
+		}
 
-					/** @noinspection PhpUnhandledExceptionInspection */
-					if ($notification->isExpired()) {
-						$storage->remove($notification->getName());
-					}
-				}
-				$storage->onApplicationShutdown();
+		try {
+			if ($notification->isExpired()) {
+				$storage->remove($notification->getName());
 			}
-			$this->alreadyCalled = TRUE;
+		} catch (SixtyEightPublishers\NotificationBundle\Exception\MissingNotificationException $e) {
+			# theoretically it's not possible in this moment ... log it?
 		}
 	}
 }
