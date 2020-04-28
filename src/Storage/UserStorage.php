@@ -142,7 +142,7 @@ class UserStorage implements IExtendedStorage
 	 *
 	 * @throws \Throwable
 	 */
-	public function onApplicationShutdown(): void
+	public function onApplicationResponse(): void
 	{
 		if (count($count = $this->getNotifications()) || $count !== $this->countOnLoad) {
 			$this->save($this->getNotifications());

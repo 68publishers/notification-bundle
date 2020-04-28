@@ -89,10 +89,5 @@ final class NotificationBundleExtension extends Nette\DI\CompilerExtension
 			'@' . $this->prefix('notification_expiration_handler'),
 			'onResponse',
 		]);
-
-		$application->addSetup('$service->onShutdown[] = [?, ?]', [
-			'@' . $this->prefix('notification_expiration_handler'),
-			'onShutdown',
-		]);
 	}
 }

@@ -28,9 +28,9 @@ interface IExtendedStorage extends IStorage
 	public function all(): array;
 
 	/**
-	 * Method is called during event Application::$onShutdown, but without arguments
+	 * The method is called during event Application::$onResponse, but without arguments
 	 *
 	 * @return void
 	 */
-	public function onApplicationShutdown(): void;
+	public function onApplicationResponse(): void;
 }

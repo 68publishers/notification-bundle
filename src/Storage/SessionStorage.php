@@ -96,7 +96,7 @@ class SessionStorage implements IExtendedStorage
 	/**
 	 * {@inheritdoc}
 	 */
-	public function onApplicationShutdown(): void
+	public function onApplicationResponse(): void
 	{
 	}
 }
