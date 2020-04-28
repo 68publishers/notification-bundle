@@ -55,7 +55,7 @@ final class Phrase implements IPhrase
 	/**
 	 * {@inheritdoc}
 	 */
-	public function setParameters($parameters = null): void
+	public function setParameters($parameters = NULL): void
 	{
 		$this->parameters = $parameters;
 	}
