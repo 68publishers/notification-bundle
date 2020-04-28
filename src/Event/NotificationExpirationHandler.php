@@ -49,22 +49,10 @@ final class NotificationExpirationHandler
 			foreach ($storage->all() as $notification) {
 				$this->processNotification($notification, $storage);
 			}
-			$storage->onApplicationShutdown();
+			$storage->onApplicationResponse();
 		}
 
 		$this->alreadyCalled = TRUE;
-	}
-
-	/**
-	 * @internal
-	 *
-	 * @return void
-	 */
-	public function onShutdown(): void
-	{
-		foreach ($this->provider->getAll($this->user->loggedIn ? (string) $this->user->getId() : NULL) as $storage) {
-			$storage->onApplicationShutdown();
-		}
 	}
 
 	/**
