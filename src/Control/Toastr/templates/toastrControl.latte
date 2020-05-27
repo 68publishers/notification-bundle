@@ -1,7 +1,7 @@
 {snippet messages}
 	<script n:nonce type="text/javascript">
 		{foreach $notifications as $notification}
-			{var type = $notification->getType()}
+			{var $type = $notification->getType()}
 
 			{if $type === $class::TYPE_ERROR || $type === 'danger'}
 				toastr.error({$notification->renderMessage($translator)}, {$notification->renderTitle($translator)});
