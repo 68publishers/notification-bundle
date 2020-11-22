@@ -7,9 +7,9 @@ namespace SixtyEightPublishers\NotificationBundle\Control;
 use Nette;
 use SixtyEightPublishers;
 
-abstract class AbstractNotificationControl extends SixtyEightPublishers\SmartNetteComponent\UI\Control implements SixtyEightPublishers\SmartNetteComponent\Translator\ITranslatorAware
+abstract class AbstractNotificationControl extends SixtyEightPublishers\SmartNetteComponent\UI\Control implements SixtyEightPublishers\TranslationBridge\TranslatorAwareInterface
 {
-	use SixtyEightPublishers\SmartNetteComponent\Translator\TTranslatorAware;
+	use SixtyEightPublishers\TranslationBridge\TranslatorAwareTrait;
 
 	/** @var \SixtyEightPublishers\NotificationBundle\Notification\ActiveNotificationProvider  */
 	protected $provider;
@@ -26,8 +26,6 @@ abstract class AbstractNotificationControl extends SixtyEightPublishers\SmartNet
 	 */
 	public function __construct(SixtyEightPublishers\NotificationBundle\Notification\ActiveNotificationProvider $provider, Nette\Security\User $user)
 	{
-		parent::__construct();
-
 		$this->provider = $provider;
 		$this->user = $user;
 	}

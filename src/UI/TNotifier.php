@@ -28,7 +28,7 @@ trait TNotifier
 	 */
 	protected function createNotifierTranslatorDomain(): string
 	{
-		return SixtyEightPublishers\SmartNetteComponent\Translator\TranslatorDomain::fromClassName(static::class) . '.message';
+		return str_replace('\\', '_', static::class) . '.message';
 	}
 
 	/**
@@ -55,20 +55,5 @@ trait TNotifier
 		}
 
 		return $this->notifiers[$key];
-	}
-
-	/**
-	 * @param string|\SixtyEightPublishers\NotificationBundle\Phrase\Phrase $message
-	 * @param string                                                        $type
-	 *
-	 * @return \SixtyEightPublishers\NotificationBundle\Notification\Notification
-	 */
-	public function flashMessage($message, $type = 'info'): SixtyEightPublishers\NotificationBundle\Notification\Notification
-	{
-		return $this->getNotifier()
-			->session()
-			->createNotificationBuilder($message)
-			->setType($type)
-			->scheduleFlashMessage();
 	}
 }

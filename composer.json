@@ -10,26 +10,33 @@
 		}
 	],
 	"require": {
-		"php": "~7.1",
-		"nette/di": "~2.4",
-		"nette/utils": "~2.4",
-		"nette/application": "~2.4",
-		"nette/http": "~2.4",
-		"nette/caching": "~2.4",
-		"nette/security": "~2.4",
-		"68publishers/smart-nette-component": "^0.1"
+		"php": "^7.3",
+		"68publishers/smart-nette-component": "^0.2",
+		"68publishers/translation-bridge": "^1.2.3",
+		"nette/application": "^3.0.6",
+		"nette/caching": "^3.0",
+		"nette/di": "^3.0.3",
+		"nette/http": "^3.0",
+		"nette/security": "^3.0",
+		"nette/utils": "^3.0"
 	},
 	"require-dev": {
+		"roave/security-advisories": "dev-master",
 		"friendsofphp/php-cs-fixer": "^2.0",
-		"nette/tester": "^1.7",
-		"kdyby/translation": "^2.6"
+		"nette/tester": "^2.2",
+		"kdyby/translation": "^3.0"
 	},
 	"autoload": {
-		"classmap": ["src/"],
-		"files": []
+		"psr-4": {
+			"SixtyEightPublishers\\NotificationBundle\\": "src/"
+		}
 	},
 	"autoload-dev": {
-		"classmap": ["tests/"],
-		"files": []
+		"psr-4": {
+			"SixtyEightPublishers\\NotificationBundle\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"sort-packages": true
 	}
 }
