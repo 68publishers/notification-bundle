@@ -59,9 +59,7 @@ class UserStorage implements IExtendedStorage
 	 */
 	private function save(array $notifications): void
 	{
-		$this->loaded = $this->cache->save($this->cacheKey, static function () use ($notifications) {
-			return $notifications;
-		});
+		$this->loaded = $this->cache->save($this->cacheKey, $notifications);
 	}
 
 	/******************* interface \SixtyEightPublishers\NotificationBundle\Storage\IExtendedStorage *******************/
