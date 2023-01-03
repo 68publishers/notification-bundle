@@ -1,3 +1,5 @@
+> :warning: Warning! This package does not have active support, it exists only for the historical needs of the author.
+
 # Notification Bundle
 
 :bell: Nette extension for user's notifications, flash messages also with Toastr (JS library) support.

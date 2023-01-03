@@ -7,9 +7,10 @@ namespace SixtyEightPublishers\NotificationBundle\Control;
 use Nette;
 use SixtyEightPublishers;
 
-abstract class AbstractNotificationControl extends SixtyEightPublishers\SmartNetteComponent\UI\Control implements SixtyEightPublishers\TranslationBridge\TranslatorAwareInterface
+abstract class AbstractNotificationControl extends Nette\Application\UI\Control implements SixtyEightPublishers\TranslationBridge\TranslatorAwareInterface
 {
 	use SixtyEightPublishers\TranslationBridge\TranslatorAwareTrait;
+	use SixtyEightPublishers\SmartNetteComponent\Bridge\Nette\Application\TemplateResolverTrait;
 
 	/** @var \SixtyEightPublishers\NotificationBundle\Notification\ActiveNotificationProvider  */
 	protected $provider;

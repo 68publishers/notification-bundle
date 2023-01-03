@@ -10,9 +10,9 @@
 		}
 	],
 	"require": {
-		"php": "^7.3",
-		"68publishers/smart-nette-component": "^0.2",
-		"68publishers/translation-bridge": "^1.2.3",
+		"php": "^7.3 || ^8.1",
+		"68publishers/smart-nette-component": "^1.0",
+		"68publishers/translation-bridge": "^2.0",
 		"nette/application": "^3.0.6",
 		"nette/caching": "^3.0",
 		"nette/di": "^3.0.3",
@@ -23,8 +23,7 @@
 	"require-dev": {
 		"roave/security-advisories": "dev-master",
 		"friendsofphp/php-cs-fixer": "^2.0",
-		"nette/tester": "^2.2",
-		"kdyby/translation": "^3.0"
+		"nette/tester": "^2.2"
 	},
 	"autoload": {
 		"psr-4": {
