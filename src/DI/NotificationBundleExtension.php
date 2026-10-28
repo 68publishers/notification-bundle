@@ -86,7 +86,7 @@ final class NotificationBundleExtension extends Nette\DI\CompilerExtension
 	public function beforeCompile(): void
 	{
 		$builder = $this->getContainerBuilder();
-		$application = $builder->getDefinition('application');
+		$application = $builder->getDefinitionByType(Nette\Application\Application::class);
 
 		$application->addSetup('$service->onResponse[] = [?, ?]', [
 			'@' . $this->prefix('notification_expiration_handler'),

@@ -12,7 +12,7 @@ class UserStorage implements IExtendedStorage
 	use Nette\SmartObject;
 
 	public const 	CACHE_NAMESPACE = 'NotifierBundle.NetteCacheStorage',
-					CACHE_KEY = 'notifications';
+		CACHE_KEY = 'notifications';
 
 	/** @var \Nette\Caching\Cache  */
 	private $cache;
@@ -142,8 +142,12 @@ class UserStorage implements IExtendedStorage
 	 */
 	public function onApplicationResponse(): void
 	{
-		if (count($count = $this->getNotifications()) || $count !== $this->countOnLoad) {
-			$this->save($this->getNotifications());
+		$notifications = $this->getNotifications();
+
+		# save only if there are some notifications or if all notifications have been removed
+		if (0 < count($notifications) || count($notifications) !== $this->countOnLoad) {
+			$this->save($notifications);
+			$this->countOnLoad = count($notifications);
 		}
 	}
 }

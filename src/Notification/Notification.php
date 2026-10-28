@@ -15,12 +15,12 @@ class Notification
 	use Nette\SmartObject;
 
 	public const 	TYPE_INFO = 'info',
-					TYPE_SUCCESS = 'success',
-					TYPE_ERROR = 'error',
-					TYPE_WARNING = 'warning';
+		TYPE_SUCCESS = 'success',
+		TYPE_ERROR = 'error',
+		TYPE_WARNING = 'warning';
 
 	public const 	ENDPOINT_TOASTR = 'toastr',
-					ENDPOINT_FLASH_MESSAGE = 'flash_message';
+		ENDPOINT_FLASH_MESSAGE = 'flash_message';
 
 	/** @var string  */
 	private $name;
@@ -191,12 +191,12 @@ class Notification
 	}
 
 	/**
-	 * @param \Nette\Localization\ITranslator|NULL $translator
+	 * @param \Nette\Localization\Translator|NULL $translator
 	 *
 	 * @return string
 	 * @throws \SixtyEightPublishers\NotificationBundle\Exception\NotificationExpiredException
 	 */
-	public function renderMessage(?Nette\Localization\ITranslator $translator = NULL): string
+	public function renderMessage(?Nette\Localization\Translator $translator = NULL): string
 	{
 		$message = $this->getMessage();
 
@@ -206,12 +206,12 @@ class Notification
 	}
 
 	/**
-	 * @param \Nette\Localization\ITranslator|NULL $translator
+	 * @param \Nette\Localization\Translator|NULL $translator
 	 *
 	 * @return string
 	 * @throws \SixtyEightPublishers\NotificationBundle\Exception\NotificationExpiredException
 	 */
-	public function renderTitle(?Nette\Localization\ITranslator $translator = NULL): string
+	public function renderTitle(?Nette\Localization\Translator $translator = NULL): string
 	{
 		$title = $this->getTitle();
 
@@ -237,6 +237,7 @@ class Notification
 			'message',
 			'type',
 			'endpoint',
+			'title',
 			'from',
 			'expire',
 			'persistent',
