@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The deprecated interfaces `Nette\Localization\ITranslator`, `Nette\Caching\IStorage` and `Nette\Application\IResponse` are replaced with `Translator`, `Storage` and `Response` in the signatures (they are aliases, existing implementations stay compatible).
 - `SessionStorage` uses `SessionSection::get()`, `set()` and `remove()` instead of the deprecated array access.
 - `NotificationBundleExtension` looks up the application service by its type instead of the name `application`.
-- PHP-CS-Fixer 3 (`.php-cs-fixer.dist.php` replaces `.php_cs.dist`), `nette/tester` 2.6+, `roave/security-advisories` `dev-latest`.
+- PHP-CS-Fixer 3 (`.php-cs-fixer.dist.php` replaces `.php_cs.dist`), `nette/tester` 2.6+, `roave/security-advisories` `dev-latest`, docker dev environment with PHP 8.3, 8.4 and 8.5.
 
 ### Removed
 
