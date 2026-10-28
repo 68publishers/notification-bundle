@@ -31,7 +31,7 @@ final class Phrase implements IPhrase
 	/**
 	 * {@inheritdoc}
 	 */
-	public function translate(Nette\Localization\ITranslator $translator): string
+	public function translate(Nette\Localization\Translator $translator): string
 	{
 		return $translator->translate($this->message, $this->parameters);
 	}

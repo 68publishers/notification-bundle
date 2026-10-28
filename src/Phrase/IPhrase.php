@@ -9,11 +9,11 @@ use Nette;
 interface IPhrase
 {
 	/**
-	 * @param \Nette\Localization\ITranslator $translator
+	 * @param \Nette\Localization\Translator $translator
 	 *
 	 * @return string
 	 */
-	public function translate(Nette\Localization\ITranslator $translator): string;
+	public function translate(Nette\Localization\Translator $translator): string;
 
 	/**
 	 * @return string

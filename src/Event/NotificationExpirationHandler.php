@@ -34,12 +34,12 @@ final class NotificationExpirationHandler
 	 * @internal
 	 *
 	 * @param \Nette\Application\Application $application
-	 * @param \Nette\Application\IResponse   $response
+	 * @param \Nette\Application\Response    $response
 	 *
 	 * @return void
 	 * @throws \Exception
 	 */
-	public function onResponse(Nette\Application\Application $application, Nette\Application\IResponse $response): void
+	public function onResponse(Nette\Application\Application $application, Nette\Application\Response $response): void
 	{
 		if (TRUE === $this->alreadyCalled || 'cli' === PHP_SAPI || $response instanceof Nette\Application\Responses\ForwardResponse || $response instanceof Nette\Application\Responses\RedirectResponse) {
 			return;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $finder = PhpCsFixer\Finder::create()
 	->in(__DIR__ . '/src')
 	->in(__DIR__ . '/tests')
@@ -7,13 +9,15 @@ $finder = PhpCsFixer\Finder::create()
 	->name('*.phpt')
 ;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
 	->setUsingCache(FALSE)
 	->setIndent("\t")
 	->setRules([
 		'@PSR2' => TRUE,
 		'array_syntax' => ['syntax' => 'short'],
-		'trailing_comma_in_multiline_array' => true,
+		'trailing_comma_in_multiline' => [
+			'elements' => ['arrays'],
+		],
 		'constant_case' => [
 			'case' => 'upper',
 		],
@@ -24,7 +28,10 @@ return PhpCsFixer\Config::create()
 			'statements' => ['break', 'continue', 'declare', 'return'],
 		],
 		'blank_line_after_namespace' => TRUE,
-		'single_blank_line_before_namespace' => TRUE,
+		'blank_lines_before_namespace' => [
+			'min_line_breaks' => 2,
+			'max_line_breaks' => 2,
+		],
 		'return_type_declaration' => [
 			'space_before' => 'none',
 		],

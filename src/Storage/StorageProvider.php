@@ -15,7 +15,7 @@ class StorageProvider
 	/** @var \Nette\Http\Session  */
 	private $session;
 
-	/** @var \Nette\Caching\IStorage  */
+	/** @var \Nette\Caching\Storage  */
 	private $storage;
 
 	/** @var NULL|\Nette\Caching\Cache */
@@ -25,10 +25,10 @@ class StorageProvider
 	private $instances = [];
 
 	/**
-	 * @param \Nette\Http\Session     $session
-	 * @param \Nette\Caching\IStorage $storage
+	 * @param \Nette\Http\Session    $session
+	 * @param \Nette\Caching\Storage $storage
 	 */
-	public function __construct(Nette\Http\Session $session, Nette\Caching\IStorage $storage)
+	public function __construct(Nette\Http\Session $session, Nette\Caching\Storage $storage)
 	{
 		$this->session = $session;
 		$this->storage = $storage;

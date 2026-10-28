@@ -51,7 +51,7 @@ class SessionStorage implements IExtendedStorage
 	 */
 	public function add(SixtyEightPublishers\NotificationBundle\Notification\Notification $notification): void
 	{
-		$this->session[$notification->getName()] = $notification;
+		$this->session->set($notification->getName(), $notification);
 	}
 
 	/**
@@ -63,7 +63,7 @@ class SessionStorage implements IExtendedStorage
 			throw SixtyEightPublishers\NotificationBundle\Exception\MissingNotificationException::error($name);
 		}
 
-		return $this->session->offsetGet($name);
+		return $this->session->get($name);
 	}
 
 	/**
@@ -71,7 +71,7 @@ class SessionStorage implements IExtendedStorage
 	 */
 	public function has(string $name): bool
 	{
-		return $this->session->offsetExists($name);
+		return NULL !== $this->session->get($name);
 	}
 
 	/**
@@ -82,7 +82,7 @@ class SessionStorage implements IExtendedStorage
 		if (!$this->has($name)) {
 			throw SixtyEightPublishers\NotificationBundle\Exception\MissingNotificationException::error($name);
 		}
-		$this->session->offsetUnset($name);
+		$this->session->remove($name);
 	}
 
 	/**

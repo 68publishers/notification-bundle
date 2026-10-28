@@ -1,0 +1,9 @@
+extensions:
+	notification_bundle: SixtyEightPublishers\NotificationBundle\DI\NotificationBundleExtension
+
+application:
+	scanDirs: false
+	scanComposer: false
+
+notification_bundle:
+	storage: Nette\Caching\Storages\MemoryStorage
